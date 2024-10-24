@@ -23,21 +23,21 @@ We use Docker to ensure a consistent development environment. Follow these steps
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/agiledev-students-fall2024 4-final-project-avocado-the-study-space-tracker.git
-    cd 4-final-project-avocado-the-study-space-tracker
-    ```
+   ```bash
+   git clone https://github.com/agiledev-students-fall2024 4-final-project-avocado-the-study-space-tracker.git
+   cd 4-final-project-avocado-the-study-space-tracker
+   ```
 
 2. Make the development script executable:
 
-    ```bash
-    chmod +x dev.sh
-    ```
+   ```bash
+   chmod +x dev.sh
+   ```
 
 3. Start the development environment:
 
-    ```bash
-    ./dev.sh
-    ```
+   ```bash
+   ./dev.sh
+   ```
 
 4. Go to [http://localhost:5173](http://localhost:5173)
