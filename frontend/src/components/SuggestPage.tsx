@@ -1,49 +1,33 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
+import SuggestedStores from "./SuggestedStores";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Filters from "./Filters";
 import { useMyStores } from "@/context/StoresContext";
 import { FiltersType } from "@/types";
 import { FilterStringTypes } from "@/types";
 
-// Placeholder suggested stores for now
-const hardcodedSuggestedStores = [
-  { _id: "1", name: "Suggested Store 1" },
-  { _id: "2", name: "Suggested Store 2" },
-  { _id: "3", name: "Suggested Store 3" },
-];
-
 const filterDescriptions: Record<FilterStringTypes, string> = {
   Brand: "brand desc",
   "Price Range": "price range desc",
   Category: "category desc",
-  Rating: "rating desc",
+  Rating: "rating desc"
 };
 
 const filterToCamelCase: Record<FilterStringTypes, keyof FiltersType> = {
   Brand: "brand",
   "Price Range": "priceRange",
   Category: "category",
-  Rating: "rating",
+  Rating: "rating"
 };
 
-const filterNames: FilterStringTypes[] = [
-  "Brand",
-  "Price Range",
-  "Category",
-  "Rating",
-];
+const filterNames: FilterStringTypes[] = ["Brand", "Price Range", "Category", "Rating"];
 
 export default function SuggestPage() {
-  // // *** Added state to hold suggested stores
-  // const [suggestedStores, setSuggestedStores] = useState<Store[]>([]);
-  // Keep hardcoded suggested stores in state
-  const [suggestedStores, setSuggestedStores] = useState(hardcodedSuggestedStores);
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentFilter, setCurrentFilter] =
     useState<FilterStringTypes>("Brand");
-  const { clearFilters, toggleFilter, setRatingFilter, filters } =
-    useMyStores();
+  const { clearFilters, toggleFilter, setRatingFilter, filters } = useMyStores();
 
   const navigate = useNavigate();
 
@@ -58,18 +42,16 @@ export default function SuggestPage() {
     const categoryFilters = getFilterValuesFromURL("category");
     categoryFilters.forEach((category) => toggleFilter("category", category));
     const ratingFilterArr = getFilterValuesFromURL("rating");
-    if (ratingFilterArr.length > 0)
-      setRatingFilter("rating", +ratingFilterArr[0]);
+    if (ratingFilterArr.length > 0) setRatingFilter('rating', +ratingFilterArr[0]);
     const numRatingsFilterArr = getFilterValuesFromURL("numRatings");
-    if (numRatingsFilterArr.length > 0)
-      setRatingFilter("numRatings", +numRatingsFilterArr[0]);
+    if (numRatingsFilterArr.length > 0) setRatingFilter('numRatings', +numRatingsFilterArr[0]);
 
     // reapply search params from the filter context
     if (
       priceRangeFilters.length === 0 &&
       brandFilters.length === 0 &&
       categoryFilters.length === 0 &&
-      ratingFilterArr.length === 0 &&
+      ratingFilterArr.length === 0 && 
       numRatingsFilterArr.length === 0
     ) {
       const currentParams = new URLSearchParams(searchParams);
@@ -92,10 +74,8 @@ export default function SuggestPage() {
         }
       });
 
-      if (filters.rating)
-        currentParams.set("rating", filters.rating.toString());
-      if (filters.numRatings)
-        currentParams.set("numRatings", filters.numRatings.toString());
+      if (filters.rating) currentParams.set('rating', filters.rating.toString());
+      if (filters.numRatings) currentParams.set('numRatings', filters.numRatings.toString());
 
       setSearchParams(currentParams);
     }
@@ -143,18 +123,7 @@ export default function SuggestPage() {
     // delete the search param
     const currentParams = new URLSearchParams(searchParams);
     currentParams.delete(filterToCamelCase[currentFilter]);
-    if (currentFilter === "Rating") currentParams.delete("numRatings"); // also delete numRatings param
     setSearchParams(currentParams);
-  };
-
-  // *** "View Results" navigates to the suggested stores in the home
-  const handleViewResult = () => {
-    navigate("/", {
-      state: {
-        suggestedStores: hardcodedSuggestedStores,
-        openSearchBar: true
-      },
-    });
   };
 
   return (
@@ -190,21 +159,13 @@ export default function SuggestPage() {
           handleSearchOrRatingURL={handleSearchOrRatingURL}
           currentFilter={currentFilter}
         />
-        <div className="my-8">
-          {/* <Button variant={"secondary"} onClick={() => navigate("/")}>
+        <div className="my-8 flex gap-4">
+          <Button variant={"secondary"} onClick={() => navigate("/")}>
             Go Back
-          </Button> */}
+          </Button>
+          <SuggestedStores />
         </div>
       </main>
-      {/* Added View Results button */}
-      <div className="fixed bottom-4 left-0 right-0 flex justify-center">
-        <Button
-          onClick={handleViewResult}
-          className="rounded-full bg-black text-white py-2 px-8"
-        >
-          VIEW RESULTS
-        </Button>
-      </div>
     </div>
   );
 }
