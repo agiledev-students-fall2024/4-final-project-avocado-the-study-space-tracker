@@ -15,7 +15,18 @@ import {
   CommandInput,
   CommandList,
 } from "@/components/ui/command";
-import SearchStoreItem from "./SearchStoreItem";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Search } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useMediaQuery } from "usehooks-ts";
+import { Drawer, DrawerContent } from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
+import { Store } from "@/types";
+import StoreItem from "./StoreItem";
 
 function StoreList({ suggestedStores = [], stores = [] }: { suggestedStores: Store[]; stores: Store[] }) {
   return (
@@ -32,7 +43,9 @@ function StoreList({ suggestedStores = [], stores = [] }: { suggestedStores: Sto
         )}
         <CommandGroup heading="All Stores">
           {stores.map((store) => (
-            <SearchStoreItem key={store._id} store={store} />
+            <CommandList key={store._id}>
+              <StoreItem type="search" store={store} />
+            </CommandList>
           ))}
         </CommandGroup>
       </CommandList>
