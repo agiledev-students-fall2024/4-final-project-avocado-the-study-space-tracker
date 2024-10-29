@@ -14,15 +14,28 @@ import SavedRoutesList from "./components/SavedRoutesList";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/signup" element={<SignupForm />} />
-      <Route path="/saved-routes" element={<SavedRoutesList />}
+
+      <Route element={<ProtectedRouteWrapper requiresAuth={false} />}>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
+      </Route>
+      <Route element={<ProtectedRouteWrapper requiresAuth={true} />}>
+        <Route index path="/" element={<Home />} />
+        <Route index path="/suggest" element={<SuggestPage />} />
+        <Route path="/help" element={<HelpPage />} />
+        <Route path="/saved-routes" element={<SavedRoutesPage />}
+        <Route path="/saved-routes-list" element={<SavedRoutesList />}
+      </Route>
+
     </>,
   ),
 );
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <StoreProvider>
+      <RouterProvider router={router} />
+    </StoreProvider>
   </StrictMode>,
 );
+
