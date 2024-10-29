@@ -48,9 +48,9 @@ export default function RouteDisplayPage() {
     <div className="p-5">
       <div className="text-3xl font-bold mb-6 text-center">Your Shopping Route</div>
 
-      {/* <div className="w-full h-[300px] border-2 border-black">
+      <div className="w-full h-[400px] border-2 border-black">
           <SoHoMap />
-      </div> */}
+      </div>
 
       <div className="mb-6">
         {routeDisplay}
