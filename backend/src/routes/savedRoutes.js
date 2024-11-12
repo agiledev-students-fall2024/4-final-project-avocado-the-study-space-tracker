@@ -79,4 +79,82 @@ router.get("/:routeId", verifyToken, (req, res) => {
     }
 })
 
+// Create a new route
+router.post("/", verifyToken, (req, res) => {
+    try {
+        const { name, stores } = req.body;
+        const newRoute = {
+            _id: `route${savedRoutes.length + 1}`,
+            name,
+            userId: req.user.userId,
+            stores
+        };
+        savedRoutes.push(newRoute);
+        res.status(201).json(newRoute);
+    } catch (error) {
+        res.status(500).json({ message: "Error creating route", error });
+    }
+});
+
+// Create a new route
+router.post("/", verifyToken, (req, res) => {
+    try {
+        const { name, stores } = req.body;
+        const newRoute = {
+            _id: `route${savedRoutes.length + 1}`,
+            name,
+            userId: req.user.userId,
+            stores
+        };
+        savedRoutes.push(newRoute);
+        res.status(201).json(newRoute);
+    } catch (error) {
+        res.status(500).json({ message: "Error creating route", error });
+    }
+});
+
+// Update a specific route by routeId
+router.put("/:routeId", verifyToken, (req, res) => {
+    try {
+        const { routeId } = req.params;
+        const { name, stores } = req.body;
+        const routeIndex = savedRoutes.findIndex(route => route._id === routeId);
+
+        if (routeIndex === -1) {
+            return res.status(404).json({ message: "Route not found" });
+        }
+
+        if (savedRoutes[routeIndex].userId !== req.user.userId) {
+            return res.status(403).json({ message: "Unauthorized to update this route" });
+        }
+
+        savedRoutes[routeIndex] = { ...savedRoutes[routeIndex], name, stores };
+        res.json(savedRoutes[routeIndex]);
+    } catch (error) {
+        res.status(500).json({ message: "Error updating route", error });
+    }
+});
+
+// Delete a specific route by routeId
+router.delete("/:routeId", verifyToken, (req, res) => {
+    try {
+        const { routeId } = req.params;
+        const routeIndex = savedRoutes.findIndex(route => route._id === routeId);
+
+        if (routeIndex === -1) {
+            return res.status(404).json({ message: "Route not found" });
+        }
+
+        if (savedRoutes[routeIndex].userId !== req.user.userId) {
+            return res.status(403).json({ message: "Unauthorized to delete this route" });
+        }
+
+        savedRoutes.splice(routeIndex, 1);
+        res.json({ message: "Route deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Error deleting route", error });
+    }
+});
+
+
 export default router;
