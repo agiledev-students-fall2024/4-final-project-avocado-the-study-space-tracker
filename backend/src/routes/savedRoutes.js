@@ -80,24 +80,7 @@ router.get("/:routeId", verifyToken, (req, res) => {
 })
 
 // Create a new route
-router.post("/", verifyToken, (req, res) => {
-    try {
-        const { name, stores } = req.body;
-        const newRoute = {
-            _id: `route${savedRoutes.length + 1}`,
-            name,
-            userId: req.user.userId,
-            stores
-        };
-        savedRoutes.push(newRoute);
-        res.status(201).json(newRoute);
-    } catch (error) {
-        res.status(500).json({ message: "Error creating route", error });
-    }
-});
-
-// Create a new route
-router.post("/", verifyToken, (req, res) => {
+router.post("/new", verifyToken, (req, res) => {
     try {
         const { name, stores } = req.body;
         const newRoute = {
