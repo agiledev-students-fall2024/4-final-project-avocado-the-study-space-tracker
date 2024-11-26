@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-const { Schema, model, models } = mongoose;
+import { Schema, model, models } from "mongoose";
 
 const StoreSchema = new Schema({
   _id: { type: String },
@@ -43,6 +42,7 @@ const StoreSchema = new Schema({
   websiteURI: { type: String },
   lat: { type: Number },
   lng: { type: Number },
+  lastUpdated: {type: Date}
 });
 
 const Store = models.Store || model("Store", StoreSchema);
