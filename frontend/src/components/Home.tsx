@@ -80,12 +80,6 @@ export default function Home() {
         >
           Generate Route
         </Button>
-        <Button
-          className="rounded-3xl bg-red-400 hover:bg-red-600 border-red-500 h-12 font-extrabold text-lg text-white"
-          onClick={() => navigate("/help")}
-        >
-          Help
-        </Button>
       </div>
     </main>
   );
