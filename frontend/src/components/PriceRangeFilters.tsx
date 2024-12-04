@@ -2,6 +2,13 @@ import { Button } from "./ui/button";
 import type { FiltersType, PriceRange } from "@/types";
 import { useMyStores } from "@/context/StoresContext";
 
+const styles = {
+  container: "flex flex-col gap-4 p-4 bg-gray-50 rounded-lg shadow-md",
+  button: "text-lg font-semibold text-left w-full py-4 px-3 rounded-lg transition-colors",
+  activeButton: "bg-green-600 text-white hover:bg-green-700",
+  inactiveButton: "bg-gray-200 text-gray-800 hover:bg-gray-300",
+};
+
 const priceRangeToDollarIcons: Record<PriceRange, number> = {
   Budget: 1,
   "Mid-Range": 2,
@@ -21,10 +28,13 @@ export default function PriceRangeFilters({ handleFilterClick }: Props) {
     <Button
       key={priceRange}
       onClick={() => handleFilterClick("priceRange", priceRange)}
-      className={`text-2xl active:bg-green-200 active:text-black active:border:bg-green-300  ${filterIsApplied("priceRange" as keyof FiltersType, priceRange) ? "bg-green-600 border-green-700 hover:bg-green-600 text-white" : "bg-green-300 hover:bg-green-400 text-green-800 border-green-400"}`}
+      className={`${styles.button} ${
+        filterIsApplied("priceRange" as keyof FiltersType, priceRange)
+          ? styles.activeButton
+          : styles.inactiveButton
+      }`}
     >
-      {priceRange} (
-      {"$".repeat(priceRangeToDollarIcons[priceRange as PriceRange])})
+      {priceRange} ({"$".repeat(priceRangeToDollarIcons[priceRange as PriceRange])})
     </Button>
   ));
   return <div className="flex flex-col gap-5">{priceRangeButtons}</div>;

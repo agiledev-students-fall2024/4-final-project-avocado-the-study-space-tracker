@@ -57,10 +57,9 @@ export default function SuggestPage() {
   };
 
   useEffect(() => {
-    // reapply any filters to the filter context using search params
     const priceRangeFilters = getFilterValuesFromURL("priceRange");
     priceRangeFilters.forEach((priceRange) =>
-      toggleFilter("priceRange", priceRange),
+      toggleFilter("priceRange", priceRange)
     );
     const brandFilters = getFilterValuesFromURL("brand");
     brandFilters.forEach((brand) => toggleFilter("brand", brand));
@@ -73,7 +72,6 @@ export default function SuggestPage() {
     if (numRatingsFilterArr.length > 0)
       setRatingFilter("numRatings", +numRatingsFilterArr[0]);
 
-    // reapply search params from the filter context
     if (
       priceRangeFilters.length === 0 &&
       brandFilters.length === 0 &&
@@ -110,22 +108,18 @@ export default function SuggestPage() {
     }
   }, []);
 
-  // toggle filter search param
   const toggleFilterURL = (filterType: string, value: string) => {
     const currentParams = new URLSearchParams(searchParams);
     const currentValues = currentParams.getAll(filterType);
 
     if (currentValues.includes(value)) {
-      // remove param if it exists
       currentParams.delete(filterType);
       currentValues
         .filter((v) => v !== value)
         .forEach((v) => {
-          // add search params back after filtering
           currentParams.append(filterType, v);
         });
     } else {
-      // add param if doesn't exist
       currentParams.append(filterType, value);
     }
 
@@ -136,7 +130,6 @@ export default function SuggestPage() {
     return searchParams.getAll(filterType);
   };
 
-  // update search or rating param
   const handleSearchOrRatingURL = (filter: string, value: string) => {
     const currentParams = new URLSearchParams(searchParams);
     if (value !== "") {
@@ -149,43 +142,36 @@ export default function SuggestPage() {
 
   const handleClearFilters = () => {
     clearFilters(currentFilter);
-    // delete the search param
     const currentParams = new URLSearchParams(searchParams);
     currentParams.delete(filterToCamelCase[currentFilter]);
-    if (currentFilter === "Rating") currentParams.delete("numRatings"); // also delete numRatings param
+    if (currentFilter === "Rating") currentParams.delete("numRatings");
     setSearchParams(currentParams);
   };
 
   return (
-    <div className="flex">
-      <nav className="w-32 bg-blue-400 overflow-y-auto h-[calc(100vh-68px)]">
-        <ul>
-          {filterNames.map((filter) => (
-            <li
-              key={filter}
-              onClick={() => setCurrentFilter(filter)}
-              className={`p-4 py-8 font-bold text-center cursor-pointer text-lg 
-                  ${filter === currentFilter ? "bg-green-600 text-black font-bold text-xl" : "hover:bg-blue-500"} 
-                  min-h-[80px] flex items-center justify-center transition duration-200`}
-              style={{ minWidth: "120px", maxHeight: "80px" }}
-            >
-              {filter}
-            </li>
-          ))}
-        </ul>
+    <div className="flex flex-col">
+      <nav className="flex justify-around p-4">
+        {filterNames.map((filter) => (
+          <button
+            key={filter}
+            onClick={() => setCurrentFilter(filter)}
+            className={`py-2 px-4 font-bold cursor-pointer text-lg border rounded
+                ${filter === currentFilter ? "bg-green-600 text-white font-bold text-xl" : "hover:bg-gray-200"} 
+                transition duration-200`}
+          >
+            {filter}
+          </button>
+        ))}
       </nav>
-      <main className="flex-1 p-6 overflow-y-auto h-fit max-h-[calc(100vh-68px)]">
-        <h1 className="text-3xl font-bold mb-4">{currentFilter}</h1>
-        <p className="text-gray-600 mb-6 leading-5 text-sm font-light">
-          {filterDescriptions[currentFilter]}
-        </p>
-        <Button
-          onClick={handleClearFilters}
-          className="mb-5"
-          variant={"destructive"}
-        >
-          Clear Filters
-        </Button>
+      <main className="flex-1  p-6 overflow-y-auto">
+        <div className="flex justify-center mb-5">
+          <Button
+            onClick={handleClearFilters}
+            variant={"destructive"}
+          >
+            Clear Filters
+          </Button>
+        </div>
         <Filters
           getFilterValuesFromURL={getFilterValuesFromURL}
           toggleFilterURL={toggleFilterURL}
@@ -193,13 +179,15 @@ export default function SuggestPage() {
           currentFilter={currentFilter}
         />
         <div className="mt-6">
-          <Button
-            className="bg-green-600 border-green-700"
-            onClick={handleGenerateStores}
-            disabled={!isAnyFilterApplied}
-          >
-            Generate Stores
-          </Button>
+            <div className="flex justify-center">
+            <Button
+              className="bg-green-600 border-green-700"
+              onClick={handleGenerateStores}
+              disabled={!isAnyFilterApplied}
+            >
+              Generate Stores
+            </Button>
+            </div>
         </div>
       </main>
     </div>
