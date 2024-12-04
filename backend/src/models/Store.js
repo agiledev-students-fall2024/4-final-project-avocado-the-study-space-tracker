@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const { Schema, model, models } = mongoose;
+import pkg from 'mongoose';
+const { Schema, model, models } = pkg;
 
 const StoreSchema = new Schema({
   _id: { type: String },
@@ -43,6 +43,7 @@ const StoreSchema = new Schema({
   websiteURI: { type: String },
   lat: { type: Number },
   lng: { type: Number },
+  lastUpdated: { type: Date },
 });
 
 const Store = models.Store || model("Store", StoreSchema);

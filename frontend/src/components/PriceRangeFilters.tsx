@@ -12,8 +12,8 @@ const styles = {
 const priceRangeToDollarIcons: Record<PriceRange, number> = {
   Budget: 1,
   "Mid-Range": 2,
-  Premium: 3,
-  Luxury: 5,
+  "High-end": 3,
+  Premium: 5,
 };
 
 type Props = {
@@ -21,7 +21,7 @@ type Props = {
 };
 
 export default function PriceRangeFilters({ handleFilterClick }: Props) {
-  const priceRanges = ["Budget", "Mid-Range", "Premium", "Luxury"];
+  const priceRanges = ["Budget", "Mid-Range", "High-end", "Premium"];
   const { filterIsApplied } = useMyStores();
 
   const priceRangeButtons = priceRanges.map((priceRange) => (
@@ -37,6 +37,5 @@ export default function PriceRangeFilters({ handleFilterClick }: Props) {
       {priceRange} ({"$".repeat(priceRangeToDollarIcons[priceRange as PriceRange])})
     </Button>
   ));
-
-  return <div className={styles.container}>{priceRangeButtons}</div>;
+  return <div className="flex flex-col gap-5">{priceRangeButtons}</div>;
 }

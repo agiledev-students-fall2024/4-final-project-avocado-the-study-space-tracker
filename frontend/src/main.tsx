@@ -31,7 +31,6 @@ const router = createBrowserRouter(
       <Route element={<ProtectedRouteWrapper requiresAuth={true} />}>
         <Route index path="/" element={<Home />} />
         <Route index path="/suggest" element={<SuggestPage />} />
-        <Route path="/help" element={<HelpPage />} />
         <Route index path="/saved-routes" element={<SavedRoutesPage />} />
       </Route>
     </>,
