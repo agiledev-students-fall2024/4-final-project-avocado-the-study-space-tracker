@@ -8,13 +8,13 @@ import { FilterStringTypes } from "@/types";
 import { suggestStores } from "@/lib/utils";
 import useStores from "@/hooks/useStores";
 
-const filterDescriptions: Record<FilterStringTypes, string> = {
-  Brand: "Select specific retailers and boutiques",
-  "Price Range": "Filter stores by typical price points from budget to luxury",
-  Category: "Browse by store type like clothing, accessories, beauty and more",
-  Rating:
-    "Sort by Google review ratings from 1 to 5 stars and number of ratings",
-};
+// const filterDescriptions: Record<FilterStringTypes, string> = {
+//   Brand: "Select specific retailers and boutiques",
+//   "Price Range": "Filter stores by typical price points from budget to luxury",
+//   Category: "Browse by store type like clothing, accessories, beauty and more",
+//   Rating:
+//     "Sort by Google review ratings from 1 to 5 stars and number of ratings",
+// };
 
 const filterToCamelCase: Record<FilterStringTypes, keyof FiltersType> = {
   Brand: "brand",

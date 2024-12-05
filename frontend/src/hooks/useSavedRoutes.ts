@@ -29,7 +29,8 @@ export default function useSavedRoutes() {
         console.error(message);
         setError(message);
       }
-    } catch (err) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err : any) {
       setError(err.message);
       console.error(err.message);
     } finally {
@@ -39,6 +40,7 @@ export default function useSavedRoutes() {
 
   useEffect(() => {
     if (user) fetchRoutes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authLoading, user]);
 
   return { routes, loading, error, refetch: fetchRoutes };

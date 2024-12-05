@@ -14,7 +14,7 @@ const styles = {
     "pl-10 pr-4 py-2 w-full border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500",
   buttonsContainer: "max-h-[50vh] overflow-y-auto flex flex-col gap-2",
   button:
-    "text-lg font-semibold text-left w-full py-4 px-3 rounded-lg transition-colors",
+    "text-lg font-semibold text-left w-full py-4 px-3 rounded-lg transition-colors border-none active:bg-green-600 active:text-white",
   activeButton: "bg-green-600 text-white hover:bg-green-700",
   inactiveButton: "bg-gray-200 text-gray-800 hover:bg-gray-300",
 };

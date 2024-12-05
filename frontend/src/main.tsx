@@ -37,7 +37,7 @@ const router = createBrowserRouter(
 );
 
 createRoot(document.getElementById("root")!).render(
-  // <StrictMode>
+  <StrictMode>
   <AuthProvider>
     <APIProvider
       apiKey={"AIzaSyBX6VqkGXWxsNGmZ45gHz4CGWHiRSgyhzI"}
@@ -51,5 +51,5 @@ createRoot(document.getElementById("root")!).render(
     ,
   </AuthProvider>,
 
-  // </StrictMode>,
+  </StrictMode>,
 );
