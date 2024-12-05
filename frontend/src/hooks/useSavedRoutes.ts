@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { SavedRoute } from "@/types";
 import useAuth from "@/context/AuthContext";
+import { API_URL } from "@/config";
 
 export default function useSavedRoutes() {
   const [routes, setRoutes] = useState<SavedRoute[]>([]);
@@ -14,7 +15,7 @@ export default function useSavedRoutes() {
     setLoading(true);
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:3001/user/saved-routes`, {
+      const res = await fetch(`${API_URL}/user/saved-routes`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

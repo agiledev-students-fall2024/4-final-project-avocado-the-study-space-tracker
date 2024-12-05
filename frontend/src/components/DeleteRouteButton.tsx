@@ -1,3 +1,4 @@
+import { API_URL } from "@/config";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -25,7 +26,7 @@ export default function DeleteRouteButton({ route, onRouteDelete }: Props) {
     try {
       // make call to backend
       const response = await fetch(
-        `http://localhost:3001/routes/${route._id}`,
+        `${API_URL}/routes/${route._id}`,
         {
           method: "DELETE",
           headers: {

@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { useState, useEffect, createContext, useContext } from "react";
 import type { User } from "@/types";
+import { API_URL } from "@/config";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -28,7 +29,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       );
       try {
         const response = await fetch(
-          "http://localhost:3001/user/verify-token",
+          `${API_URL}/user/verify-token`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },

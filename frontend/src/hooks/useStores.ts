@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import type { Store } from "@/types";
+import { API_URL } from "@/config";
 
 export default function useStores() {
   const [stores, setStores] = useState<Store[]>([]);
@@ -8,7 +9,7 @@ export default function useStores() {
 
   useEffect(() => {
     const fetchStores = async () => {
-      const res = await fetch("http://localhost:3001/stores");
+      const res = await fetch(`${API_URL}/stores`);
       if (res.ok) {
         const stores = await res.json();
         const sortedStores = stores.sort((a: Store, b: Store) =>
