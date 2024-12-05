@@ -91,7 +91,6 @@ export const suggestStores = (
   const finalStores = sortedStores
     .filter((store) => store.score && store.score >= 3)
     .slice(0, 10);
-  console.log(finalStores);
   return finalStores.map((item) => item.store);
 };
 
@@ -161,6 +160,53 @@ function getAllPermutations<T>(array: T[]): T[][] {
 
   return permutations;
 }
+function nearestNeighborRoute(
+  userLat: number,
+  userLng: number,
+  stores: Store[],
+): RouteResult {
+  const unvisited = [...stores];
+  const path: Store[] = [];
+  let totalDistance = 0;
+  let currentLat = userLat;
+  let currentLng = userLng;
+
+  while (unvisited.length > 0) {
+    // Find nearest unvisited store
+    let minDistance = Infinity;
+    let nearestIndex = -1;
+
+    unvisited.forEach((store, index) => {
+      const distance = calculateDistance(
+        currentLat,
+        currentLng,
+        store.lat,
+        store.lng,
+      );
+      if (distance < minDistance) {
+        minDistance = distance;
+        nearestIndex = index;
+      }
+    });
+
+    // Add nearest store to path
+    const nearestStore = unvisited[nearestIndex];
+    path.push(nearestStore);
+    totalDistance += minDistance;
+
+    // Update current position
+    currentLat = nearestStore.lat;
+    currentLng = nearestStore.lng;
+
+    // Remove visited store
+    unvisited.splice(nearestIndex, 1);
+  }
+
+  return {
+    path,
+    totalDistance,
+  };
+}
 
 export function findOptimalRoute(
   userLat: number,
@@ -180,45 +226,46 @@ export function findOptimalRoute(
       ),
     };
 
-  let shortestDistance = Infinity;
-  let optimalPath: Store[] = [];
+  // Use brute force for 7 or fewer stores
+  if (stores.length <= 7) {
+    let shortestDistance = Infinity;
+    let optimalPath: Store[] = [];
 
-  // Generate all possible permutations of stores
-  const permutations = getAllPermutations(stores);
+    const permutations = getAllPermutations(stores);
 
-  // Evaluate each permutation
-  for (const permutation of permutations) {
-    let totalDistance = 0;
+    for (const permutation of permutations) {
+      let totalDistance = 0;
 
-    // Calculate distance from user to first store
-    totalDistance += calculateDistance(
-      userLat,
-      userLng,
-      permutation[0].lat,
-      permutation[0].lng,
-    );
-
-    // Calculate distances between consecutive stores
-    for (let i = 0; i < permutation.length - 1; i++) {
       totalDistance += calculateDistance(
-        permutation[i].lat,
-        permutation[i].lng,
-        permutation[i + 1].lat,
-        permutation[i + 1].lng,
+        userLat,
+        userLng,
+        permutation[0].lat,
+        permutation[0].lng,
       );
+
+      for (let i = 0; i < permutation.length - 1; i++) {
+        totalDistance += calculateDistance(
+          permutation[i].lat,
+          permutation[i].lng,
+          permutation[i + 1].lat,
+          permutation[i + 1].lng,
+        );
+      }
+
+      if (totalDistance < shortestDistance) {
+        shortestDistance = totalDistance;
+        optimalPath = [...permutation];
+      }
     }
 
-    // Update optimal path if current path is shorter
-    if (totalDistance < shortestDistance) {
-      shortestDistance = totalDistance;
-      optimalPath = [...permutation];
-    }
+    return {
+      path: optimalPath,
+      totalDistance: shortestDistance,
+    };
   }
 
-  return {
-    path: optimalPath,
-    totalDistance: shortestDistance,
-  };
+  // Use nearest neighbor for larger arrays
+  return nearestNeighborRoute(userLat, userLng, stores);
 }
 
 export const getDescriptionFontSize = (length: number): string => {

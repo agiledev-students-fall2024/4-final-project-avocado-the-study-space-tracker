@@ -23,7 +23,6 @@ export default function useSavedRoutes() {
       });
       if (res.ok) {
         const routes = await res.json();
-        console.log("user's saved routes are ", routes);
         setRoutes(routes);
       } else {
         const { message } = await res.json();
