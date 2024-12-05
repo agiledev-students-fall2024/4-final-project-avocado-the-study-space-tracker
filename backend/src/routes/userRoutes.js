@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 import pkg from "express";
-const { Request, Response, Router } = pkg;
+const { Router } = pkg;
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";

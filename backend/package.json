@@ -7,7 +7,8 @@
     "dev": "nodemon src/server.js",
     "test": "NODE_ENV=test c8 mocha 'test/**/*.test.js' --recursive --exit --timeout 10000",
     "test:watch": "NODE_ENV=test mocha --watch 'test/**/*.test.js' --recursive --timeout 10000",
-    "coverage": "c8 report --reporter=text --reporter=html"
+    "coverage": "c8 report --reporter=text --reporter=html",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -30,9 +31,12 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.16.0",
     "c8": "^8.0.1",
     "chai": "^4.5.0",
     "chai-http": "^4.4.0",
+    "eslint": "^9.16.0",
+    "globals": "^15.13.0",
     "mocha": "^10.8.2",
     "nodemon": "^3.1.7",
     "sinon": "^15.2.0"

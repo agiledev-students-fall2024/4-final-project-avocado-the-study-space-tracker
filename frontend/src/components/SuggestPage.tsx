@@ -106,6 +106,7 @@ export default function SuggestPage() {
 
       setSearchParams(currentParams);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleFilterURL = (filterType: string, value: string) => {

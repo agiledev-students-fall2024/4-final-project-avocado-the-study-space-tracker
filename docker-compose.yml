@@ -8,3 +8,12 @@ services:
     volumes:
       # - ./frontend:/app
       - /app/node_modules
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      # - ./backend:/app
+      - /app/node_modules
