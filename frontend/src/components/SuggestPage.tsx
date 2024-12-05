@@ -59,7 +59,7 @@ export default function SuggestPage() {
   useEffect(() => {
     const priceRangeFilters = getFilterValuesFromURL("priceRange");
     priceRangeFilters.forEach((priceRange) =>
-      toggleFilter("priceRange", priceRange)
+      toggleFilter("priceRange", priceRange),
     );
     const brandFilters = getFilterValuesFromURL("brand");
     brandFilters.forEach((brand) => toggleFilter("brand", brand));
@@ -165,10 +165,7 @@ export default function SuggestPage() {
       </nav>
       <main className="flex-1  p-6 overflow-y-auto">
         <div className="flex justify-center mb-5">
-          <Button
-            onClick={handleClearFilters}
-            variant={"destructive"}
-          >
+          <Button onClick={handleClearFilters} variant={"destructive"}>
             Clear Filters
           </Button>
         </div>
@@ -179,7 +176,7 @@ export default function SuggestPage() {
           currentFilter={currentFilter}
         />
         <div className="mt-6">
-            <div className="flex justify-center">
+          <div className="flex justify-center">
             <Button
               className="bg-green-600 border-green-700"
               onClick={handleGenerateStores}
@@ -187,7 +184,7 @@ export default function SuggestPage() {
             >
               Generate Stores
             </Button>
-            </div>
+          </div>
         </div>
       </main>
     </div>
