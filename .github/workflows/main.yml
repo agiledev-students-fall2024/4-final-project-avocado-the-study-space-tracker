@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
     push:
-        branches: [main, master]
+        branches: [main, master, github-actions]
     pull_request:
             branches: [main, master]
 
@@ -23,10 +23,10 @@ jobs:
           key: deps-backend-node-modules-${{ hashFiles('backend/package-lock.json') }}
       - name: Install frontend dependencies
         working-directory: ./frontend
-        run: npm ci
+        run: npm install
       - name: Install backend dependencies
         working-directory: ./backend
-        run: npm ci
+        run: npm install
       - name: Lint frontend code
         working-directory: ./frontend
         run: npm run lint
@@ -48,7 +48,7 @@ jobs:
           key: deps-frontend-node-modules-${{ hashFiles('frontend/package-lock.json') }}
       - name: Install frontend dependencies
         working-directory: ./frontend
-        run: npm ci
+        run: npm install
       - name: Build frontend project
         working-directory: ./frontend
         run: npm run build
