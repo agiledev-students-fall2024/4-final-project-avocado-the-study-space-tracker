@@ -120,17 +120,17 @@ export default function AddUpdateRouteButton({
       });
       if (type === "Add") {
         const savedRoute = await response.json();
-        console.log(savedRoute);
         const routeId = savedRoute._id;
         // refresh page to render name, desc, share link
         setTimeout(() => {
           // refresh page with the returned id
           navigate(`/route/${routeId}`);
         }, 1000);
+      } else {
+        // callback function is provided if type is "Update"
+        onRouteUpdate!();
       }
     } else {
-      // callback function is provided if type is "Update"
-      onRouteUpdate!();
       const { message } = await response.json();
       toast({
         variant: "destructive",
