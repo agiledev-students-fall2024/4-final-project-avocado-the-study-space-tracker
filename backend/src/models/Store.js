@@ -1,4 +1,4 @@
-import pkg from 'mongoose';
+import pkg from "mongoose";
 const { Schema, model, models } = pkg;
 
 const StoreSchema = new Schema({

@@ -12,16 +12,18 @@ const app = express();
 
 connectToDatabase();
 
-app.use(cors({
+app.use(
+  cors({
     origin: [
-        'http://174.138.47.181:4173',    // production frontend
-        'http://localhost:5173',         // Local development frontend
-        'http://localhost:5174',         // Local development frontend
-        'http://localhost:4173'          // Local preview frontend
+      "http://174.138.47.181:4173", // production frontend
+      "http://localhost:5173", // Local development frontend
+      "http://localhost:5174", // Local development frontend
+      "http://localhost:4173", // Local preview frontend
     ],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
-}));
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  }),
+);
 
 app.use(express.json());
 

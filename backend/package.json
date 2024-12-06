@@ -36,9 +36,12 @@
     "chai": "^4.5.0",
     "chai-http": "^4.4.0",
     "eslint": "^9.16.0",
+    "esm": "^3.2.25",
     "globals": "^15.13.0",
     "mocha": "^10.8.2",
     "nodemon": "^3.1.7",
-    "sinon": "^15.2.0"
+    "sinon": "^15.2.0",
+    "sinon-express-mock": "^2.2.1",
+    "supertest": "^7.0.0"
   }
 }
