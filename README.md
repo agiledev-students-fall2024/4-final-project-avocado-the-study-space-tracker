@@ -28,6 +28,14 @@ Several sets of instructions are included in this repository. They should each b
 
 The Soho Route Generator is an mobile web application that creates custom shopping routes around Soho, New York for users based on their fashion preferences and budgets. Users can select the products they would like to purchase, their cost ($ to $$$$) and what type of fashion trends they like. The app then generates the most efficient shopping route offering multiple stores that adhere to the filters.
 
+## DevOps & Deployment
+- **URL:** http://174.138.47.181:4173
+- **DevOps (completed extra credit for sprint 4):**
+  - Docker: [View Dockerfile](https://github.com/agiledev-students-fall2024/4-final-project-avocado-the-study-space-tracker/blob/master/docker-compose.yml)
+  - CI/CD workflows: 
+    - [![CI/CD](https://github.com/agiledev-students-fall2024/4-final-project-avocado-the-study-space-tracker/actions/workflows/main.yml/badge.svg)](https://github.com/agiledev-students-fall2024/4-final-project-avocado-the-study-space-tracker/actions/workflows/main.yml)
+    - [![log github events](https://github.com/agiledev-students-fall2024/4-final-project-avocado-the-study-space-tracker/actions/workflows/event-logger.yml/badge.svg)](https://github.com/agiledev-students-fall2024/4-final-project-avocado-the-study-space-tracker/actions/workflows/event-logger.yml)
+
 ## Core team members
 
 1. Hannah Liang
