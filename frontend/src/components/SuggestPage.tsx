@@ -177,90 +177,147 @@ export default function SuggestPage() {
         {isAnyFilterApplied && <ActiveFilters />}
 
         <div className="space-y-6">
-        {currentFilter === "Brand" && (
-          <div className="space-y-4">
-            <div className="relative">
-              <input
-                type="search"
-                placeholder="Search brands..."
-                className="w-full p-3 pl-10 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500"
-                onChange={(e) => handleSearchOrRatingURL("brandSearch", e.target.value)}
-                value={getFilterValuesFromURL("brandSearch")[0] || ""}
-              />
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                <svg className="w-5 h-5 text-gray-400" fill="none" strokeWidth="2" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+          {currentFilter === "Brand" && (
+            <div className="space-y-4">
+              <div className="relative">
+                <input
+                  type="search"
+                  placeholder="Search brands..."
+                  className="w-full p-3 pl-10 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  onChange={(e) => handleSearchOrRatingURL("brandSearch", e.target.value)}
+                  value={getFilterValuesFromURL("brandSearch")[0] || ""}
+                />
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" strokeWidth="2" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
               </div>
-            </div>
-            <div className="relative flex">
-              <div className="flex-1 space-y-2 max-h-[60vh] overflow-y-auto pr-4" id="brandList">
-                {Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map((letter) => {
-                  const brandsWithLetter = brandFilters
-                    .filter(brand => 
-                      brand.toLowerCase().startsWith(letter.toLowerCase()) &&
-                      brand.toLowerCase().includes((getFilterValuesFromURL("brandSearch")[0] || "").toLowerCase())
-                    );
-                  
-                  if (brandsWithLetter.length === 0) return null;
-                  
-                  return (
-                    <div key={letter} id={`section-${letter}`}>
-                      <div className="sticky top-0 bg-white py-1 text-sm font-medium text-gray-500">
-                        {letter}
+              <div className="relative flex">
+                <div className="flex-1 space-y-2 max-h-[60vh] overflow-y-auto pr-4" id="brandList">
+                  {/* Special Characters Section */}
+                  {(() => {
+                    const specialBrands = brandFilters
+                      .filter(brand => 
+                        !(/^[a-zA-Z]/).test(brand) &&
+                        brand.toLowerCase().includes((getFilterValuesFromURL("brandSearch")[0] || "").toLowerCase())
+                      );
+                    
+                    if (specialBrands.length > 0) {
+                      return (
+                        <div key="#" id="section-special">
+                          <div className="sticky top-0 bg-white py-1 text-sm font-medium text-gray-500">
+                            #
+                          </div>
+                          {specialBrands.map((brand) => (
+                            <button
+                              key={brand}
+                              onClick={() => {
+                                toggleFilter("brand", brand);
+                                toggleFilterURL("brand", brand);
+                              }}
+                              className={`w-full p-3 text-left rounded-lg transition-colors
+                                ${filters.brand.includes(brand)
+                                  ? "bg-green-600 text-white hover:bg-green-700"
+                                  : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                                }`}
+                            >
+                              {brand}
+                            </button>
+                          ))}
+                        </div>
+                      );
+                    }
+                    return null;
+                  })()}
+
+                  {/* Alphabetical Sections */}
+                  {Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map((letter) => {
+                    const brandsWithLetter = brandFilters
+                      .filter(brand => 
+                        brand.toLowerCase().startsWith(letter.toLowerCase()) &&
+                        brand.toLowerCase().includes((getFilterValuesFromURL("brandSearch")[0] || "").toLowerCase())
+                      );
+                    
+                    if (brandsWithLetter.length === 0) return null;
+                    
+                    return (
+                      <div key={letter} id={`section-${letter}`}>
+                        <div className="sticky top-0 bg-white py-1 text-sm font-medium text-gray-500">
+                          {letter}
+                        </div>
+                        {brandsWithLetter.map((brand) => (
+                          <button
+                            key={brand}
+                            onClick={() => {
+                              toggleFilter("brand", brand);
+                              toggleFilterURL("brand", brand);
+                            }}
+                            className={`w-full p-3 text-left rounded-lg transition-colors
+                              ${filters.brand.includes(brand)
+                                ? "bg-green-600 text-white hover:bg-green-700"
+                                : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                              }`}
+                          >
+                            {brand}
+                          </button>
+                        ))}
                       </div>
-                      {brandsWithLetter.map((brand) => (
-                        <button
-                          key={brand}
-                          onClick={() => {
-                            toggleFilter("brand", brand);
-                            toggleFilterURL("brand", brand);
-                          }}
-                          className={`w-full p-3 text-left rounded-lg transition-colors
-                            ${filters.brand.includes(brand)
-                              ? "bg-green-600 text-white hover:bg-green-700"
-                              : "bg-gray-50 text-gray-700 hover:bg-gray-100"
-                            }`}
-                        >
-                          {brand}
-                        </button>
-                      ))}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="flex flex-col justify-center text-xs font-medium text-gray-500 pl-1">
-                {Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map((letter) => {
-                  const hasBrands = brandFilters.some(brand => 
-                    brand.toLowerCase().startsWith(letter.toLowerCase())
-                  );
-                  
-                  return (
-                    <button
-                      key={letter}
-                      className={`py-0.5 px-1 hover:text-gray-900 focus:text-green-600
-                        ${!hasBrands ? 'opacity-30 cursor-not-allowed' : ''}`}
-                      onClick={() => {
-                        if (hasBrands) {
-                          const element = document.getElementById(`section-${letter}`);
-                          if (element) {
-                            const container = document.getElementById('brandList');
-                            if (container) {
-                              container.scrollTop = element.offsetTop - container.offsetTop;
+                    );
+                  })}
+                </div>
+
+                {/* Index */}
+                <div className="flex flex-col justify-center text-xs font-medium text-gray-500 pl-1">
+                  {/* Special Characters Index */}
+                  <button
+                    className={`py-0.5 px-1 hover:text-gray-900 focus:text-green-600
+                      ${!brandFilters.some(brand => !(/^[a-zA-Z]/).test(brand)) ? 'opacity-30 cursor-not-allowed' : ''}`}
+                    onClick={() => {
+                      const element = document.getElementById('section-special');
+                      if (element) {
+                        const container = document.getElementById('brandList');
+                        if (container) {
+                          container.scrollTop = element.offsetTop - container.offsetTop;
+                        }
+                      }
+                    }}
+                  >
+                    #
+                  </button>
+
+                  {/* Alphabetical Index */}
+                  {Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map((letter) => {
+                    const hasBrands = brandFilters.some(brand => 
+                      brand.toLowerCase().startsWith(letter.toLowerCase())
+                    );
+                    
+                    return (
+                      <button
+                        key={letter}
+                        className={`py-0.5 px-1 hover:text-gray-900 focus:text-green-600
+                          ${!hasBrands ? 'opacity-30 cursor-not-allowed' : ''}`}
+                        onClick={() => {
+                          if (hasBrands) {
+                            const element = document.getElementById(`section-${letter}`);
+                            if (element) {
+                              const container = document.getElementById('brandList');
+                              if (container) {
+                                container.scrollTop = element.offsetTop - container.offsetTop;
+                              }
                             }
                           }
-                        }
-                      }}
-                      disabled={!hasBrands}
-                    >
-                      {letter}
-                    </button>
-                  );
-                })}
+                        }}
+                        disabled={!hasBrands}
+                      >
+                        {letter}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
           
           {currentFilter === "Price Range" && (
             <PriceRangeFilters handleFilterClick={toggleFilter} />
