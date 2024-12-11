@@ -1,6 +1,6 @@
 import HelpButton from "./HelpButton";
 import { Button } from "./ui/button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import useAuth from "@/context/AuthContext";
 
 export default function Navbar() {
@@ -38,12 +38,9 @@ export default function Navbar() {
         </div>
 
         <div className="absolute left-1/2 transform -translate-x-1/2">
-          <div
-            className="text-white text-2xl font-bold"
-            onClick={() => navigate("/")}
-          >
-            LOGO
-          </div>
+          <Link to={"/"}>
+            <img src="/vite.svg" />
+          </Link>
         </div>
 
         {!isAuthPage && (

@@ -48,8 +48,6 @@ createRoot(document.getElementById("root")!).render(
           <RouterProvider router={router} />
         </StoreProvider>
       </APIProvider>
-      ,
     </AuthProvider>
-    ,
   </StrictMode>,
 );
