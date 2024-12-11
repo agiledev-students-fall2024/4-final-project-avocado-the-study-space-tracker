@@ -350,7 +350,7 @@ export default function SuggestPage() {
         </Button>
 
         <Button
-          className="w-full mt-6 mb-6 bg-green-600 hover:bg-green-700"
+          className="w-full mt-6 mb-6 bg-green-600 hover:bg-green-700 border-green-600"
           onClick={handleGenerateStores}
           disabled={!isAnyFilterApplied}
         >
