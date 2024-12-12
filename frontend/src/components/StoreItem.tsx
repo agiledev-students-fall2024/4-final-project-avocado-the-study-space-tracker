@@ -42,6 +42,7 @@ function SearchItemDialogTrigger({ store }: { store: Store }) {
       setIsAdding(false);
     }, 500);
   };
+  return (
     <CommandItem className="h-[100px] flex justify-between px-5">
       <div className="text-sm font-normal">{store.name}</div>
 

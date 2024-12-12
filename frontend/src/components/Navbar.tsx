@@ -1,6 +1,6 @@
 import HelpButton from "./HelpButton";
 import { Button } from "./ui/button";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "@/context/AuthContext";
 
 export default function Navbar() {

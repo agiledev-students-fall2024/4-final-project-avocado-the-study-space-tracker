@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/command";
 import StoreItem from "./StoreItem";
 import { Separator } from "./ui/separator";
+import { cn } from "@/lib/utils";
 
 function StoreList({
   stores,
