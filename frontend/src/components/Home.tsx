@@ -21,7 +21,7 @@ export default function Home(): JSX.Element {
   };
 
   return (
-    <main className="flex flex-col gap-5 bg-violet-100 min-h-screen px-3.5 py-3 text-gray-900">
+    <main className="flex flex-col gap-5 bg-white-100 min-h-screen px-3.5 py-3 text-gray-900">
       {/* Search and MyStores Section */}
       <div className="flex flex-col gap-3">
         {error ? (
@@ -38,7 +38,7 @@ export default function Home(): JSX.Element {
         )}
           <Button
           variant="secondary"
-          className="rounded-xl h-10 font-medium text-lg bg-green-700 text-white shadow-md hover:bg-green-800 transition"
+          className="rounded-xl h-10 font-medium text-lg bg-blue-600 text-white shadow-md hover:bg-green-800 transition"
           onClick={() => navigate("/suggest")}
         >
           Filters

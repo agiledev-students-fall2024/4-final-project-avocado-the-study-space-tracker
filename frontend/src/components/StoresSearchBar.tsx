@@ -85,9 +85,9 @@ export default function StoresSearchBar({ stores = [] }: { stores: Store[] }) {
             variant="outline"
             role="combobox"
             size="lg"
-            className={cn("justify-between w-full m-auto mt-0 flex items-center space-x-2 rounded-xl bg-white border-gray-300 text-gray-500 hover:bg-gray-100 px-2")}
+            className={cn("justify-between italic w-full m-auto mt-0 flex items-center space-x-2 rounded-xl bg-white border-gray-300 text-gray-500 hover:bg-gray-100 px-2")}
           >
-          browse all stores
+          Browse all stores...
             <Search className="ml-2 h-4 w-4 shrink-0" />
           </Button>
         </PopoverTrigger>

@@ -62,14 +62,14 @@ export default function MyStoresButton() {
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
             <Button
-            variant="outline"
             role="combobox"
             size="lg"
-            className={cn("justify-between w-full m-auto mt-0 flex items-center space-x-2 rounded-xl bg-white border-gray-300 text-gray-500 hover:bg-gray-100 px-2")}
+            className={cn(" font-medium text-lg justify-between w-150 m-auto mt-0 flex items-center space-x-2 rounded-3xl bg-green-700 border-green text-white hover:bg-green-700 px-2")}
             >
-            <span>your selection</span>
-            <span className="ml-2 text-sm py-[2px] font-normal text-gray-500">
-              ({stores.length})
+            <StoreIcon className="h-5 w-5" />
+            <span>Selected stores</span>
+            <span className="ml-2 text-lg font-medium text-white">
+              {stores.length}
             </span>
             </Button>
         </PopoverTrigger>
