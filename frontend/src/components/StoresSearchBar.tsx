@@ -7,7 +7,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
-import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import { Store } from "@/types";
 import {
@@ -41,10 +40,15 @@ function StoreList({
                 <StoreItem type="search" store={store} />
               </CommandList>
             ))}
-            <Separator className="h-[5px]" />
+            <Separator
+              style={{
+                height: "5px",
+                backgroundColor: "#ddd",
+                margin: "8px 0",
+              }}
+            />
           </CommandGroup>
         )}
-
         <CommandGroup heading="All Stores">
           {stores.map((store) => (
             <CommandList key={store._id}>
@@ -92,6 +96,7 @@ export default function StoresSearchBar({ stores = [] }: { stores: Store[] }) {
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0">
+
           {isDesktop ? (
             <StoreList
               stores={stores}
@@ -101,7 +106,12 @@ export default function StoresSearchBar({ stores = [] }: { stores: Store[] }) {
           ) : (
             <Drawer open={open} onOpenChange={setOpen}>
               <DrawerContent>
-                <div className="mt-4 border-t">
+                <div
+                  style={{
+                    marginTop: "16px",
+                    borderTop: "1px solid #ddd",
+                  }}
+                >
                   <StoreList
                     stores={stores}
                     highlightedStores={suggestedStores}

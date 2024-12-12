@@ -21,11 +21,13 @@ export default function Home(): JSX.Element {
   };
 
   return (
+
     <main className="flex flex-col gap-5 bg-violet-100 min-h-screen px-3.5 py-3 text-gray-900">
       {/* Search and MyStores Section */}
       <div className="flex flex-col gap-3">
         {error ? (
           <span className="text-center mt-2 font-bold text-red-500">
+
             An error occurred: {error}
           </span>
         ) : !loading ? (
@@ -34,7 +36,9 @@ export default function Home(): JSX.Element {
             <MyStoresButton/>
           </>
         ) : (
-          <Loader className="m-auto mt-5 animate-spin text-gray-600" />
+
+          <Loader style={{ margin: "auto", marginTop: "20px", animation: "spin 1s linear infinite" }} />
+
         )}
           <Button
           variant="secondary"
@@ -64,6 +68,7 @@ export default function Home(): JSX.Element {
           {loading ? (
             <div className="h-full w-full flex justify-center items-center">
               <Loader className="animate-spin w-[40px] h-[40px] text-gray-600" />
+
             </div>
           ) : error ? (
             <div className="text-center text-red-500">
