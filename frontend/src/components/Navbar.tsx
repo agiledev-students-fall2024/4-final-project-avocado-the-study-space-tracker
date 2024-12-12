@@ -21,14 +21,34 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gray-800 p-4 sticky top-0 z-50">
-      <div className="flex justify-between items-center">
-        <div className="w-1/3">
+    <nav
+      style={{
+        backgroundColor: "#1f2937",
+        padding: "16px",
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ width: "33%" }}>
           {isSuggestPage || isHelpPage ? (
             <Button
               variant={"secondary"}
-              className="border-slate-300"
               onClick={() => navigate("/")}
+              style={{
+                borderColor: "#cbd5e1",
+                padding: "8px 16px",
+                backgroundColor: "white",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
             >
               Cancel
             </Button>
@@ -37,17 +57,36 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="absolute left-1/2 transform -translate-x-1/2">
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
           <Link to={"/"}>
-            <img src="/vite.svg" />
+            <img src="/vite.svg" alt="Logo" style={{ height: "24px" }} />
           </Link>
         </div>
 
         {!isAuthPage && (
-          <div className="w-1/3 flex justify-end">
+          <div
+            style={{
+              width: "33%",
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
             <Button
               variant={isAuthenticated ? "destructive" : "default"}
               onClick={handleAuthClick}
+              style={{
+                padding: "8px 16px",
+                backgroundColor: isAuthenticated ? "#ef4444" : "#1f2937",
+                color: "white",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
             >
               {isAuthenticated ? "Log Out" : "Sign In"}
             </Button>
