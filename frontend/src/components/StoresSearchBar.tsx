@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/command";
 import StoreItem from "./StoreItem";
 import { Separator } from "./ui/separator";
+import { cn } from "@/lib/utils";
 
 function StoreList({
   stores,
@@ -88,40 +89,15 @@ export default function StoresSearchBar({ stores = [] }: { stores: Store[] }) {
           <Button
             variant="outline"
             role="combobox"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "240px",
-              margin: "32px auto 0",
-              padding: "8px",
-              backgroundColor: "white",
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              cursor: "pointer",
-              alignItems: "center",
-            }}
+            size="lg"
+            className={cn("justify-between italic w-full m-auto mt-0 flex items-center space-x-2 rounded-xl bg-white border-gray-300 text-gray-500 hover:bg-gray-100 px-2")}
           >
-            Search Stores
-            <Search
-              style={{
-                marginLeft: "8px",
-                height: "16px",
-                width: "16px",
-                flexShrink: 0,
-                opacity: 0.5,
-              }}
-            />
+          Browse all stores...
+            <Search className="ml-2 h-4 w-4 shrink-0" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent
-          style={{
-            width: "200px",
-            padding: "0",
-            backgroundColor: "white",
-            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-            borderRadius: "8px",
-          }}
-        >
+        <PopoverContent className="w-full p-0">
+
           {isDesktop ? (
             <StoreList
               stores={stores}

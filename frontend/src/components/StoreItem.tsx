@@ -43,22 +43,9 @@ function SearchItemDialogTrigger({ store }: { store: Store }) {
     }, 500);
   };
   return (
-    <CommandItem
-      style={{
-        height: "100px",
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "0 20px",
-      }}
-    >
-      <div
-        style={{
-          fontSize: "24px",
-          fontWeight: "800",
-        }}
-      >
-        {store.name}
-      </div>
+    <CommandItem className="h-[100px] flex justify-between px-5">
+      <div className="text-sm font-normal">{store.name}</div>
+
       {isAdding ? (
         <Check
           style={{
@@ -97,22 +84,8 @@ function MyStoresDialogTrigger({ store }: { store: Store }) {
   const { removeStore } = useMyStores();
 
   return (
-    <CommandItem
-      style={{
-        height: "100px",
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "0 20px",
-      }}
-    >
-      <div
-        style={{
-          fontSize: "24px",
-          fontWeight: "800",
-        }}
-      >
-        {store.name}
-      </div>
+    <CommandItem className="h-[100px] flex justify-between px-5">
+      <div className="text-sm font-normal">{store.name}</div>
       <Button
         variant="destructive"
         onClick={() => removeStore(store._id as string)}
