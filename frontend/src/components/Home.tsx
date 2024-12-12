@@ -19,36 +19,37 @@ export default function Home() {
   const handleClickGenerate = () => {
     navigate("/route");
   };
+
   return (
-    <main className="flex flex-col gap-12 px-5">
-      <div className="flex flex-col gap-5">
+    <main style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "0 20px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         {error ? (
-          <span className="text-center mt-2 font-bold">
+          <span style={{ textAlign: "center", marginTop: "10px", fontWeight: "bold" }}>
             An error occurred: {error}
           </span>
         ) : !loading ? (
           <StoresSearchBar stores={stores} />
         ) : (
-          <Loader className="m-auto mt-5 animate-spin" />
+          <Loader style={{ margin: "auto", marginTop: "20px", animation: "spin 1s linear infinite" }} />
         )}
         <MyStoresButton />
       </div>
 
-      <div className="flex flex-col gap-6 relative">
-        <div className="absolute top-[-30px] flex gap-1 items-center">
+      <div style={{ display: "flex", flexDirection: "column", gap: "24px", position: "relative" }}>
+        <div style={{ position: "absolute", top: "-30px", display: "flex", gap: "5px", alignItems: "center" }}>
           <Switch
             id="display"
             checked={showOnlyUserStores}
             onClick={() => setShowOnlyUserStores((prev) => !prev)}
           />
-          <Label htmlFor="display" className="font-light text-sm">
+          <Label htmlFor="display" style={{ fontWeight: "300", fontSize: "14px" }}>
             Show only selected stores
           </Label>
         </div>
-        <div className="w-full h-[300px] border-2 border-black">
+        <div style={{ width: "100%", height: "300px", border: "2px solid black" }}>
           {loading ? (
-            <div className="h-full w-full flex justify-center items-center">
-              <Loader className="animate-spin w-[40px] h-[40px]" />
+            <div style={{ height: "100%", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <Loader style={{ animation: "spin 1s linear infinite", width: "40px", height: "40px" }} />
             </div>
           ) : error ? (
             <div>Something went wrong when loading the map: {error}</div>
@@ -61,19 +62,19 @@ export default function Home() {
           )}
         </div>
         <Button
-          className="rounded-3xl h-12 font-extrabold text-lg"
+          style={{ borderRadius: "24px", height: "48px", fontWeight: "800", fontSize: "18px" }}
           onClick={() => navigate("/suggest")}
         >
           Suggest Stores For Me
         </Button>
         <Button
-          className="rounded-3xl h-12 font-extrabold text-lg"
+          style={{ borderRadius: "24px", height: "48px", fontWeight: "800", fontSize: "18px" }}
           onClick={() => navigate("/saved-routes")}
         >
           Saved Routes
         </Button>
         <Button
-          className="rounded-3xl h-12 font-extrabold text-lg"
+          style={{ borderRadius: "24px", height: "48px", fontWeight: "800", fontSize: "18px" }}
           onClick={handleClickGenerate}
           disabled={userStores.length === 0}
         >
