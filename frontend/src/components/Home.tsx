@@ -22,10 +22,12 @@ export default function Home(): JSX.Element {
 
   return (
     <main className="flex flex-col gap-5 bg-white-100 min-h-screen px-3.5 py-3 text-gray-900">
+
       {/* Search and MyStores Section */}
       <div className="flex flex-col gap-3">
         {error ? (
           <span className="text-center mt-2 font-bold text-red-500">
+
             An error occurred: {error}
           </span>
         ) : !loading ? (
@@ -34,7 +36,9 @@ export default function Home(): JSX.Element {
             <MyStoresButton/>
           </>
         ) : (
-          <Loader className="m-auto mt-5 animate-spin text-gray-600" />
+
+          <Loader style={{ margin: "auto", marginTop: "20px", animation: "spin 1s linear infinite" }} />
+
         )}
           <Button
           variant="secondary"
