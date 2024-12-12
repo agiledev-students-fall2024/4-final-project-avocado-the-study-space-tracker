@@ -28,12 +28,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         "token detected in localstorage, verifying it in backend now...",
       );
       try {
-        const response = await fetch(
-          `${API_URL}/user/verify-token`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
+        const response = await fetch(`${API_URL}/user/verify-token`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         if (response.ok) {
           console.log("token authenticated. ur now authenticated");
           const userData: User = await response.json();

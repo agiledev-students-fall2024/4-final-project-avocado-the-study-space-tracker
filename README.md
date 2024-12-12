@@ -14,8 +14,8 @@ This app is designed to improve the experience of shopping in a large, busy, and
     - [![log github events](https://github.com/agiledev-students-fall2024/4-final-project-avocado-the-study-space-tracker/actions/workflows/event-logger.yml/badge.svg)](https://github.com/agiledev-students-fall2024/4-final-project-avocado-the-study-space-tracker/actions/workflows/event-logger.yml)
 
 ## Team
-1. Hannah Liang
+1. Ricky Zhang
 2. Vasily Belousov
-3. Ruoxuan Cao
-4. Ashley Liu
-5. Ricky Zhang
+3. Ashley Liu
+4. Hannah Liang
+5. Ruoxuan Cao

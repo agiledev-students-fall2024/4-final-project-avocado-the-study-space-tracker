@@ -1,6 +1,6 @@
 import HelpButton from "./HelpButton";
 import { Button } from "./ui/button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import useAuth from "@/context/AuthContext";
 
 export default function Navbar() {
@@ -23,6 +23,7 @@ export default function Navbar() {
   };
 
   return (
+
     <nav className="bg-violet-950 sticky top-0 z-50" style={{ height: '6rem' }}>
       <div className="flex justify-between items-center h-full px-4">
         <div
@@ -30,6 +31,7 @@ export default function Navbar() {
           onClick={() => navigate("/")}
         >
           Hello, Soho shopper
+
         </div>
 
         {!isAuthPage && (
