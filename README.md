@@ -6,7 +6,7 @@ The **SoHo Route Generator** is a mobile web application that creates custom sho
 This app is designed to improve the experience of shopping in a large, busy, and scattered area like SoHo, making it especially useful for shoppers with limited time or specific preferences.
 
 ## DevOps & Deployment
-- **URL:** http://174.138.47.181:4173
+- **URL:** [Deployed Site](https://sohoshopper.xyz/)
 - **DevOps (completed extra credit for sprint 4):**
   - Docker: [View Dockerfile](https://github.com/agiledev-students-fall2024/4-final-project-avocado-the-study-space-tracker/blob/master/docker-compose.yml)
   - CI/CD workflows: 
