@@ -84,13 +84,14 @@ export default function StoresSearchBar({ stores = [] }: { stores: Store[] }) {
           <Button
             variant="outline"
             role="combobox"
-            className={cn("justify-between w-60 m-auto mt-8")}
+            size="lg"
+            className={cn("justify-between w-full m-auto mt-0 flex items-center space-x-2 rounded-xl bg-white border-gray-300 text-gray-500 hover:bg-gray-100 px-2")}
           >
-            Search Stores
-            <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          browse all stores
+            <Search className="ml-2 h-4 w-4 shrink-0" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0">
+        <PopoverContent className="w-full p-0">
           {isDesktop ? (
             <StoreList
               stores={stores}

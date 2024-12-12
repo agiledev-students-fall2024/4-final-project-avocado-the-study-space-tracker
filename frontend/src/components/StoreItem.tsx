@@ -44,7 +44,7 @@ function SearchItemDialogTrigger({ store }: { store: Store }) {
   };
   return (
     <CommandItem className="h-[100px] flex justify-between px-5">
-      <div className="text-2xl font-extrabold">{store.name}</div>
+      <div className="text-sm font-normal">{store.name}</div>
       {isAdding ? (
         <Check className="text-green-500 w-[86px] animate-ping" />
       ) : hasStore(store._id as string) ? (
@@ -78,7 +78,7 @@ function MyStoresDialogTrigger({ store }: { store: Store }) {
 
   return (
     <CommandItem className="h-[100px] flex justify-between px-5">
-      <div className="text-2xl font-extrabold">{store.name}</div>
+      <div className="text-sm font-normal">{store.name}</div>
       <Button
         variant="destructive"
         onClick={() => removeStore(store._id as string)}
