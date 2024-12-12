@@ -31,16 +31,48 @@ export default function RouteStoreItem({
     <Dialog>
       <DialogTrigger asChild>
         <div>
-          <CommandItem className="h-[100px] flex justify-between px-5">
-            <div className="text-2xl font-extrabold">{store.name}</div>
+          <CommandItem
+            style={{
+              height: "100px",
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "0 20px",
+              alignItems: "center",
+              borderBottom: "1px solid #ddd",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "24px",
+                fontWeight: "800",
+              }}
+            >
+              {store.name}
+            </div>
             {isAdding ? (
-              <Check className="text-green-500 w-[86px] animate-ping" />
+              <Check
+                style={{
+                  color: "green",
+                  width: "86px",
+                  animation: "ping 1s linear infinite",
+                }}
+              />
             ) : isSavedStore(store) ? (
               <Button
                 variant="destructive"
                 onClick={(e) => {
                   e.stopPropagation();
                   removeStore(store);
+                }}
+                style={{
+                  backgroundColor: "#dc2626",
+                  color: "white",
+                  borderRadius: "4px",
+                  padding: "8px 16px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  border: "none",
                 }}
               >
                 Remove
@@ -52,8 +84,25 @@ export default function RouteStoreItem({
                   e.stopPropagation();
                   handleAdd();
                 }}
+                style={{
+                  backgroundColor: "#22c55e",
+                  color: "white",
+                  borderRadius: "4px",
+                  padding: "8px 16px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  border: "none",
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
-                Add <Plus className="ml-1" />
+                Add{" "}
+                <Plus
+                  style={{
+                    marginLeft: "8px",
+                  }}
+                />
               </Button>
             )}
           </CommandItem>

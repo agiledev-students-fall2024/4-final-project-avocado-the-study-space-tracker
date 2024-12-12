@@ -7,7 +7,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
-import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import { Store } from "@/types";
 import {
@@ -41,10 +40,15 @@ function StoreList({
                 <StoreItem type="search" store={store} />
               </CommandList>
             ))}
-            <Separator className="h-[5px]" />
+            <Separator
+              style={{
+                height: "5px",
+                backgroundColor: "#ddd",
+                margin: "8px 0",
+              }}
+            />
           </CommandGroup>
         )}
-
         <CommandGroup heading="All Stores">
           {stores.map((store) => (
             <CommandList key={store._id}>
@@ -84,13 +88,40 @@ export default function StoresSearchBar({ stores = [] }: { stores: Store[] }) {
           <Button
             variant="outline"
             role="combobox"
-            className={cn("justify-between w-60 m-auto mt-8")}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "240px",
+              margin: "32px auto 0",
+              padding: "8px",
+              backgroundColor: "white",
+              border: "1px solid #ddd",
+              borderRadius: "8px",
+              cursor: "pointer",
+              alignItems: "center",
+            }}
           >
             Search Stores
-            <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <Search
+              style={{
+                marginLeft: "8px",
+                height: "16px",
+                width: "16px",
+                flexShrink: 0,
+                opacity: 0.5,
+              }}
+            />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0">
+        <PopoverContent
+          style={{
+            width: "200px",
+            padding: "0",
+            backgroundColor: "white",
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            borderRadius: "8px",
+          }}
+        >
           {isDesktop ? (
             <StoreList
               stores={stores}
@@ -100,7 +131,12 @@ export default function StoresSearchBar({ stores = [] }: { stores: Store[] }) {
           ) : (
             <Drawer open={open} onOpenChange={setOpen}>
               <DrawerContent>
-                <div className="mt-4 border-t">
+                <div
+                  style={{
+                    marginTop: "16px",
+                    borderTop: "1px solid #ddd",
+                  }}
+                >
                   <StoreList
                     stores={stores}
                     highlightedStores={suggestedStores}
